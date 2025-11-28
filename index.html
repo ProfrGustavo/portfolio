@@ -1,19 +1,362 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante do Rocha</title>
+    <title>Sabor Supremo - Restaurante Fino</title>
+    <style>
+        /* Variáveis CSS */
+        :root {
+            --cor-principal: #8B0000; /* Vermelho Escuro/Borgonha */
+            --cor-secundaria: #333;
+            --cor-fundo: #f4f4f4;
+            --cor-texto-claro: #fff;
+            --cor-texto-escuro: #111;
+            --fonte-principal: 'Georgia', serif;
+            --fonte-secundaria: 'Arial', sans-serif;
+        }
+
+        /* Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fonte-secundaria);
+            line-height: 1.6;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-escuro);
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--fonte-principal);
+            color: var(--cor-secundaria);
+        }
+
+        /* Header e Navegação */
+        header {
+            background: var(--cor-texto-claro);
+            color: var(--cor-texto-escuro);
+            padding: 10px 0;
+            border-bottom: 3px solid var(--cor-principal);
+        }
+
+        header .logo {
+            float: left;
+            font-size: 2em;
+            font-family: var(--fonte-principal);
+            color: var(--cor-principal);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            float: right;
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: var(--cor-texto-escuro);
+            text-decoration: none;
+            font-weight: bold;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--cor-principal);
+            border-bottom: 2px solid var(--cor-principal);
+        }
+
+        /* Seção Hero (Banner) */
+        #hero {
+            background: url('https://via.placeholder.com/1600x600/333333/ffffff?text=Ambiente+Aconchegante') no-repeat center center/cover;
+            color: var(--cor-texto-claro);
+            min-height: 500px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Overlay escuro */
+        }
+        
+        #hero .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        #hero h1 {
+            font-size: 4em;
+            margin-bottom: 10px;
+            color: var(--cor-texto-claro);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        #hero p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--cor-principal);
+            color: var(--cor-texto-claro);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #a82020;
+        }
+
+        /* Seção do Menu */
+        #menu {
+            padding: 40px 0;
+            text-align: center;
+            background: var(--cor-texto-claro);
+        }
+
+        #menu h2 {
+            font-size: 3em;
+            margin-bottom: 40px;
+        }
+
+        .menu-category {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .menu-category h3 {
+            border-bottom: 2px solid var(--cor-principal);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: bold;
+            flex-grow: 1;
+        }
+
+        .item-price {
+            color: var(--cor-principal);
+            font-weight: bold;
+        }
+
+        .item-description {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Seção Sobre */
+        #about {
+            padding: 40px 0;
+            background: var(--cor-fundo);
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--cor-secundaria);
+            color: var(--cor-texto-claro);
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--cor-principal);
+            text-decoration: none;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            header .logo, nav ul {
+                float: none;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            #hero {
+                min-height: 350px;
+            }
+
+            #hero h1 {
+                font-size: 2.5em;
+            }
+
+            #hero p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    Restaurante do Rocha
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Sabor Supremo</a>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+            <div style="clear: both;"></div>
+        </div>
+    </header>
 
+    <section id="hero">
+        
 
+[Image of fine dining restaurant interior and a delicious plated dish]
 
+        <div class="hero-content">
+            <h1>A Experiência do Sabor Inigualável</h1>
+            <p>O melhor da culinária contemporânea com ingredientes frescos.</p>
+            <a href="#" class="btn">Reservar uma Mesa</a>
+        </div>
+    </section>
 
+    <section id="menu">
+        <div class="container">
+            <h2>Nosso Menu</h2>
+            
+            <div class="menu-category">
+                <h3>Entradas</h3>
+                <div class="menu-item">
+                    <span class="item-name">Salada da Casa</span>
+                    <span class="item-price">R$ 35,00</span>
+                    <p class="item-description">Folhas frescas, queijo de cabra e vinagrete de mel.</p>
+                </div>
+                <div class="menu-item">
+                    <span class="item-name">Carpaccio Trufado</span>
+                    <span class="item-price">R$ 55,00</span>
+                    <p class="item-description">Finas fatias de carne com azeite trufado e lascas de parmesão.</p>
+                </div>
+            </div>
 
+            <div class="menu-category">
+                <h3>Pratos Principais</h3>
+                <div class="menu-item">
+                    <span class="item-name">Filé Mignon ao Molho Malbec</span>
+                    <span class="item-price">R$ 98,00</span>
+                    <p class="item-description">Acompanha purê de batata doce e aspargos grelhados.</p>
+                </div>
+                <div class="menu-item">
+                    <span class="item-name">Salmão Grelhado com Ervas</span>
+                    <span class="item-price">R$ 85,00</span>
+                    <p class="item-description">Servido com risoto de limão siciliano.</p>
+                </div>
+                <div class="menu-item">
+                    <span class="item-name">Pasta Carbonara Clássica</span>
+                    <span class="item-price">R$ 72,00</span>
+                    <p class="item-description">Pancetta, ovo, queijo pecorino e pimenta do reino.</p>
+                </div>
+            </div>
 
-    
+            <div class="menu-category">
+                <h3>Sobremesas</h3>
+                <div class="menu-item">
+                    <span class="item-name">Petit Gâteau de Chocolate Belga</span>
+                    <span class="item-price">R$ 38,00</span>
+                    <p class="item-description">Acompanhado de sorvete de baunilha.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>Nossa História</h2>
+            <p>Fundado em 2010, o Sabor Supremo nasceu da paixão em transformar ingredientes simples em obras de arte culinárias. Nossa missão é proporcionar uma experiência gastronômica memorável, unindo a alta cozinha a um ambiente acolhedor e serviço impecável.</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h3>Fale Conosco</h3>
+            <p>
+                **Endereço:** Rua das Flores, 123 - Centro<br>
+                **Telefone:** (41) 99999-8888<br>
+                **Email:** contato@saborsupremo.com.br
+            </p>
+            <p>
+                **Horário de Funcionamento:**<br>
+                Terça a Sábado: 19:00h - 23:00h | Domingo: 12:00h - 15:00h
+            </p>
+            <p>&copy; 2025 Sabor Supremo. Todos os direitos reservados.</p>
+            <p><a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a></p>
+        </div>
+    </footer>
+
 </body>
 </html>
